@@ -1,0 +1,66 @@
+<html>
+<head></head>
+<body>
+<script>
+function extend(destination, source){
+	for(var e in source){
+		if (source.hasOwnProperty(e)){
+			destination[e] = source[e];
+		}
+	}
+	return destination;
+}
+
+
+
+var washShirt = function(){
+	this.wash = function(){
+		this.colorRun();
+		this.status = 'clean';
+		console.log(this.color + ' shirt washed');
+	};
+	this.getDirty = function(){
+		this.status = 'dirty';
+		console.log(this.color + ' shirt is dirty');
+	};
+	this.colorRun = function(){
+		console.log('washing ' + this.color + ' shirt...');
+		if(this.color !== 'white'){
+			console.log(this.color + ' shirts always run :(');
+		}
+		else{
+			console.log('this ' + this.color + ' shirt will not run :)');
+		}
+	}
+}
+
+var Shirt = function(color){
+	this.color = color;
+}
+
+washShirt.call(Shirt.prototype);
+
+var redShirt = new Shirt('red');
+var whiteShirt = new Shirt('white');
+
+redShirt.getDirty();
+redShirt.wash();
+
+whiteShirt.getDirty();
+whiteShirt.wash();
+
+//should output the following in console:
+//red shirt is dirty
+//washing red shirt...
+//red shirts always run :(
+//red shirt washed
+//white shirt is dirty
+//washing white shirt...
+//this white shirt will not run :)
+//white shirt washed
+
+</script>
+</body>
+</html>
+
+
